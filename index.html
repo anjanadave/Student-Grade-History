@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Student Grade History</h1>
+        <label for="numberInput" class="label">Web Development: </label><br>
+        <input type="text" id="webDev" class="one"><br>
+        <label for="numberInput" class="label">Maths: </label><br>
+        <input type="text" id="maths" class="one"><br>
+        <label for="numberInput" class="label">Computer: </label><br>
+        <input type="text" id="computer" class="one"><br>
+        <label for="numberInput" class="label">Physics: </label><br>
+        <input type="text" id="physics" class="one"><br>
+
+        <button onclick="showPercentage()">Show Persontage</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+      function showPercentage(){
+        const webDevGrade = parseFloat(document.getElementById("webDev").value);
+        const mathsGrade = parseFloat(document.getElementById("maths").value);
+        const computerGrade = parseFloat(document.getElementById("computer").value);
+        const physicsGrade = parseFloat(document.getElementById("physics").value);
+
+        const totalSubjects = 4;
+        
+        const totalMarks = webDevGrade + mathsGrade + computerGrade + physicsGrade;
+
+        const percentage = (totalMarks / (totalSubjects * 100)) * 100;
+
+        let grade;
+        if(percentage >= 90) {
+            grade = 'A+';
+        }else if(percentage >= 80){
+            grade = 'A';
+        }else if(percentage >= 70){
+            grade = 'B';
+        }else if(percentage >= 60){
+            grade = 'C';
+        }else {
+            grade = 'D';
+        }
+
+        let passFail;
+        if(percentage >= 40){
+            passFail = 'You passed'
+        }else{
+            passFail = 'You failed'
+        }
+
+        document.getElementById("result").innerHTML = `Out of 400, your total grade is ${totalMarks} and Percentage is ${percentage.toFixed(2)}%. your grade is ${grade}. ${passFail}.`;
+
+      }
+    </script>
+</body>
+
+</html>
